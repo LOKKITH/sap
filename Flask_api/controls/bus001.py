@@ -4,12 +4,12 @@ from utils.text_to_json_util import *
 class BussCtrl_001(object):
     # A class to host all business controls for the py_sap module.
 
-    def __init__(self) -> None:
+    def __init__(self,server) -> None:
         self.utils = Utilities()
         
-        creds_fileName = "/home/SAPITSM/finalsapdemo/config/sap_cred.json"
-        mongodb_cred = "/home/SAPITSM/finalsapdemo/config/mongodb_creds.json"
-        self.rfc_creds = self.utils.read_json_file(creds_fileName)
+        creds_fileName = "/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/config/sap_cred.json"
+        mongodb_cred = "/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/config/mongodb_creds.json"
+        self.rfc_creds = self.utils.read_json_file1(creds_fileName,server)
         self.mongodb_creds = self.utils.read_json_file(mongodb_cred)
     
     def bus001Execute(self):
@@ -58,11 +58,11 @@ class BussCtrl_001(object):
             # set the file path
             print("--------------------- Accessing JSON files ---------------------")
             
-            file_path1 = '/home/SAPITSM/finalsapdemo/Flask_api/dummydata/bus001/erev.json'
-            file_path2 = '/home/SAPITSM/finalsapdemo/Flask_api/dummydata/bus001/ekko.json'
-            file_path3 = '/home/SAPITSM/finalsapdemo/Flask_api/dummydata/bus001/ekpo.json'
-            file_path4 = '/home/SAPITSM/finalsapdemo/Flask_api/dummydata/bus001/lfa1.json'
-            file_path5 = '/home/SAPITSM/finalsapdemo/Flask_api/dummydata/bus001/ekkn.json'
+            file_path1 = '/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/Flask_api/dummydata/bus001/erev.json'
+            file_path2 = '/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/Flask_api/dummydata/bus001/ekko.json'
+            file_path3 = '/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/Flask_api/dummydata/bus001/ekpo.json'
+            file_path4 = '/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/Flask_api/dummydata/bus001/lfa1.json'
+            file_path5 = '/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/Flask_api/dummydata/bus001/ekkn.json'
             
 
             # read the data into a string
@@ -169,7 +169,7 @@ class BussCtrl_001(object):
         password = urllib.parse.quote_plus('Azureuser@123')
 
         # client = MongoClient("mongodb://sapitsm:haihello@123@20.204.119.18:27017")
-        client = MongoClient('mongodb://%s:%s@127.0.0.1:27017' % (username, password))
+        client = MongoClient('mongodb://%s:%s@20.204.156.83:27017' % (username, password))
 
         mydb = client["sapsample01"]
 
@@ -225,7 +225,7 @@ class BussCtrl_001(object):
         print("Creating JSON ticket - BUS001")  
         
         # for value in data_list:
-        json_skeleton = self.utils.read_json_file('/home/SAPITSM/finalsapdemo/config/itsec001/itsm_schema.json')          
+        json_skeleton = self.utils.read_json_file('/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/config/itsm_schema.json')          
           
         json_skeleton['MANDT'] = '1001'
         json_skeleton['RFC'] = '100'

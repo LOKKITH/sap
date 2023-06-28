@@ -11,7 +11,7 @@ class MC_SD_S002(object):
         
         self.utils = Utilities()
         
-        creds_fileName = "/home/SAPITSM/finalsapdemo/config/sap_cred.json"
+        creds_fileName = "/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/config/sap_cred.json"
         self.rfc_creds = self.utils.read_json_file(creds_fileName)
         
         return
@@ -51,9 +51,9 @@ class MC_SD_S002(object):
         if env_var == 'DEV' :
             # set the file path            
             print("--------------------- Accessing JSON files ---------------------")
-            file_path1 = '/home/SAPITSM/finalsapdemo/Flask_api/dummydata/mc_sd_s002/sd_002_bkpf.json'
-            file_path2 = '/home/SAPITSM/finalsapdemo/Flask_api/dummydata/mc_sd_s002/sd_002_bseg.json'
-            file_path3 = '/home/SAPITSM/finalsapdemo/Flask_api/dummydata/mc_sd_s002/sd_002_bsad.json'
+            file_path1 = '/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/Flask_api/dummydata/mc_sd_s002/sd_002_bkpf.json'
+            file_path2 = '/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/Flask_api/dummydata/mc_sd_s002/sd_002_bseg.json'
+            file_path3 = '/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/Flask_api/dummydata/mc_sd_s002/sd_002_bsad.json'
 
             # read the data into a string
             with open(file_path1, 'r') as f1:
@@ -215,7 +215,7 @@ class MC_SD_S002(object):
         print("Creating JSON ticket - MC_SD_S002")     
         
         
-        json_skeleton = self.utils.read_json_file('/home/SAPITSM/finalsapdemo/config/itsec001/itsec001_schema.json')            
+        json_skeleton = self.utils.read_json_file('/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/config/itsec001/itsec001_schema.json')            
         json_skeleton['MANDT'] = '1002'
         json_skeleton['RFC'] = '100'
         json_skeleton['REQ_NO'] = '1000000098'

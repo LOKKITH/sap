@@ -28,6 +28,14 @@ class Utilities():
         d_filedata = open(d_filename, 'r')
         json_load = json.loads(d_filedata.read())
         return json_load
+    def read_json_file1(self, file_name,server):
+
+        # A function to read values of a json file.
+        d_filename = file_name
+        d_filedata = open(d_filename, 'r')
+        json_load = json.loads(d_filedata.read())
+        temp=json_load.get(server)
+        return temp
     
     def write_json_file(self, filename, data_to_write):
         
@@ -154,7 +162,7 @@ class Utilities():
         sheaders = {'Content-Type': 'application/json'}
         
         # read from the EKS creds file
-        filePath  ="/home/SAPITSM/finalsapdemo/config/eks_cred.json"
+        filePath  ="/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/config/eks_cred.json"
         
         serverData = self.read_json_file(filePath)
         

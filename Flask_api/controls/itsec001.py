@@ -10,7 +10,7 @@ class ITSEC001(object):
         
         self.utils = Utilities()
         
-        creds_fileName = "/home/SAPITSM/finalsapdemo/config/sap_cred.json"
+        creds_fileName = "/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/config/sap_cred.json"
         self.rfc_creds = self.utils.read_json_file(creds_fileName)
         
         self.profile_names = ["SAP_ALL","SAP_NEW","S_A.SYSTEM","S_A.ADMIN","S_A.CUSTOMIZ","S_A.DEVELOP","S_A.USER","S_USER.ALL","S_ABAP_ALL","S_RZL_ADMIN"]
@@ -59,9 +59,9 @@ class ITSEC001(object):
             # set the file path            
             print("--------------------- Accessing JSON files ---------------------")
             
-            file_path1 = '/home/SAPITSM/finalsapdemo/Flask_api/dummydata/itsec001/usr02.json'
-            file_path2 = '/home/SAPITSM/finalsapdemo/Flask_api/dummydata/itsec001/ust04.json'
-            file_path3 = '/home/SAPITSM/finalsapdemo/Flask_api/dummydata/itsec001/user_addr.json'
+            file_path1 = '/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/Flask_api/dummydata/itsec001/usr02.json'
+            file_path2 = '/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/Flask_api/dummydata/itsec001/ust04.json'
+            file_path3 = '/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/Flask_api/dummydata/itsec001/user_addr.json'
 
             # read the data into a string
             with open(file_path1, 'r') as f1:
@@ -146,7 +146,7 @@ class ITSEC001(object):
         password = urllib.parse.quote_plus('Azureuser@123')
 
         # client = MongoClient("mongodb://sapitsm:haihello@123@20.204.119.18:27017")
-        client = MongoClient('mongodb://%s:%s@127.0.0.1:27017' % (username, password))
+        client = MongoClient('mongodb://%s:%s@20.204.156.83:27017' % (username, password))
 
         mydb = client["sapsample01"]
 
@@ -201,7 +201,7 @@ class ITSEC001(object):
         print("Creating JSON ticket - ITSEC001")     
         
         # for value in data_list:
-        json_skeleton = self.utils.read_json_file('/home/SAPITSM/finalsapdemo/config/itsec001/itsec001_schema.json')            
+        json_skeleton = self.utils.read_json_file('/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/config/itsec001/itsec001_schema.json')            
         json_skeleton['MANDT'] = '1002'
         json_skeleton['RFC'] = '100'
         json_skeleton['REQ_NO'] = '1000000095'

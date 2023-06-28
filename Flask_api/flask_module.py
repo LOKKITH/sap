@@ -8,6 +8,7 @@ from controls.itsec001 import *
 from controls.mc_mm_p003 import *
 from controls.mc_mm_p006 import *
 from controls.mc_sd_s002 import *
+from bson import json_util
 
 app = Flask(__name__)
 scheduler = BackgroundScheduler()
@@ -17,6 +18,14 @@ scheduler = BackgroundScheduler()
 os.environ["Deployment"] = "DEV"
 
 print("Deployment is set as --> ",os.environ["Deployment"])
+
+username = urllib.parse.quote_plus('SAPITSM')
+password = urllib.parse.quote_plus('Azureuser@123')
+connection_string = f'mongodb://{username}:{password}@20.204.156.83:27017'
+client = MongoClient(connection_string)
+db = client['sample']
+collection=db['flask']
+
 
 def BUS001():
     # Implement your logic for the BUS001 function here
@@ -84,17 +93,62 @@ def run_function():
     try:
         with app.app_context():
             
-            data = request.get_json()
+            #prabhu code
+            #data = request.get_json()
+            # controls = data.get('control')
+            # interval = data.get('interval')
 
-            controls = data.get('control')
-            interval = data.get('interval')
 
-            if controls and isinstance(controls, list):
+            #loki code
+            json_data = request.get_json()
+            job = json_data.get('ID')
+            interval = json_data.get('interval')
+
+            print(job, interval)
+
+            result = list(collection.find({"id":job}))
+            #result=list(collection.find())
+
+            serialized_result = json_util.dumps(result)
+            temp=json.loads(serialized_result)
+            controls=temp[0]['control']
+
+            
+
+            # if result:
+            #     #type returned by MongoDB is not JSON serializable.
+            #     # Convert ObjectId to string for JSON serialization
+            #     serialized_result = json_util.dumps(result)
+            #     #getting the value of control from the dump.
+            #     temp=json.loads(serialized_result)
+            #     temp1=temp[0]['control']
+            #     #return serialized_result
+            #     return temp1
+            # else:
+            #     return jsonify({'message': 'Data not found'})
+
+
+            if controls:
                 for control in controls:
                     scheduler.add_job(job_function, 'interval', args=[control], seconds=int(interval))      
                 return jsonify(message="Cron jobs scheduled successfully")
             else:
                 return jsonify(error="Invalid controls"), 400
+            # if controls:
+            #     scheduler.add_job(job_function, 'interval', args=[controls], seconds=int(interval))      
+            #     return jsonify(message="Cron jobs scheduled successfully")
+            # else:
+            #     return jsonify(error="Invalid controls"), 400
+            
+            
+
+
+            # if controls and isinstance(controls, list):
+            #     for control in controls:
+            #         scheduler.add_job(job_function, 'interval', args=[control], seconds=int(interval))      
+            #     return jsonify(message="Cron jobs scheduled successfully")
+            # else:
+            #     return jsonify(error="Invalid controls"), 400
     
     except Exception as e:
         return {'error': str(e)}, 400
