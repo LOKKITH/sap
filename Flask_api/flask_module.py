@@ -27,9 +27,9 @@ db = client['sample']
 collection=db['flask']
 
 
-def BUS001():
+def BUS001(server):
     # Implement your logic for the BUS001 function here
-    control1 = BussCtrl_001()
+    control1 = BussCtrl_001(server)
     # This is just a placeholder function for demonstration purposes
     print("Running BUS001 function")
     
@@ -67,10 +67,10 @@ def MCSDS002():
     
     control5.s002Execute()
 
-def job_function(control):
+def job_function(control,server):
     
     if control == 'BUS001':
-        scheduler.add_job(BUS001)
+        scheduler.add_job(BUS001(server))
         return jsonify(message="BUS001 function scheduled successfully")
     elif control == 'ITSEC001':
         scheduler.add_job(ITSEC_001)
@@ -112,6 +112,7 @@ def run_function():
             serialized_result = json_util.dumps(result)
             temp=json.loads(serialized_result)
             controls=temp[0]['control']
+            server=temp[0]['server']
 
             
 
@@ -128,10 +129,12 @@ def run_function():
             #     return jsonify({'message': 'Data not found'})
 
 
-            if controls:
+            if controls and isinstance(controls,list):
                 for control in controls:
-                    scheduler.add_job(job_function, 'interval', args=[control], seconds=int(interval))      
+                    scheduler.add_job(job_function, 'interval', args=[control,server], seconds=int(interval))      
                 return jsonify(message="Cron jobs scheduled successfully")
+            elif isinstance(controls,str):
+                scheduler.add_job(job_function,'interval',args=[controls,server],seconds=int(interval))
             else:
                 return jsonify(error="Invalid controls"), 400
             # if controls:

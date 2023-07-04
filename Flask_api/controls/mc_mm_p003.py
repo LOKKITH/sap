@@ -3,12 +3,12 @@ from utils.text_to_json_util import *
 
 class MC_MM_P003(object):
     
-    def __init__(self) -> None:
+    def __init__(self,server) -> None:
         
         self.utils = Utilities()
         
         creds_fileName = "/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/config/sap_cred.json"
-        self.rfc_creds = self.utils.read_json_file(creds_fileName)
+        self.rfc_creds = self.utils.read_json_file1(creds_fileName,server)
     
     def p003Execute(self):
         

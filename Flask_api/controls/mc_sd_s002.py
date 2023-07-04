@@ -7,12 +7,12 @@ import json
 
 class MC_SD_S002(object):
     
-    def __init__(self) -> None:
+    def __init__(self,server) -> None:
         
         self.utils = Utilities()
         
         creds_fileName = "/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/config/sap_cred.json"
-        self.rfc_creds = self.utils.read_json_file(creds_fileName)
+        self.rfc_creds = self.utils.read_json_file1(creds_fileName,server)
         
         return
     

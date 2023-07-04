@@ -21,33 +21,33 @@ def BUS001(server):
     
     control1.bus001Execute()
 
-def ITSEC_001():
+def ITSEC_001(server):
     # Implement your logic for the BUS001 function here
-    control2 = ITSEC001()
+    control2 = ITSEC001(server)
     # This is just a placeholder function for demonstration purposes
     print("Running ITSEC001 function")
     
     control2.itsecExecute()
 
-def MCMMP033():
+def MCMMP033(server):
     # Implement your logic for the BUS001 function here
-    control3 = MC_MM_P003()
+    control3 = MC_MM_P003(server)
     # This is just a placeholder function for demonstration purposes
     print("Running MCMMP033 function")
     
     control3.p003Execute()
 
-def MCMMP006():
+def MCMMP006(server):
     # Implement your logic for the BUS001 function here
-    control4 = MC_MM_P006()
+    control4 = MC_MM_P006(server)
     # This is just a placeholder function for demonstration purposes
     print("Running MCMMP006 function")
     
     control4.p006Execute()
 
-def MCSDS002():
+def MCSDS002(server):
     # Implement your logic for the BUS001 function here
-    control5 = MC_SD_S002()
+    control5 = MC_SD_S002(server)
     # This is just a placeholder function for demonstration purposes
     print("Running MCSDS002 function")
     
@@ -62,16 +62,16 @@ def job_function(control,server):
         BUS001(server)
         return jsonify(message="BUS001 function scheduled successfully")
     elif control == 'ITSEC001':
-        ITSEC_001()
+        ITSEC_001(server)
         return jsonify(message="ITSEC001 function scheduled successfully")
     elif control == 'MCMMP033':
-        MCMMP033() 
+        MCMMP033(server) 
         return jsonify(message="MCMMP033 function scheduled successfully")
     elif control == 'MCMMP006':
-        MCMMP006()   
+        MCMMP006(server)   
         return jsonify(message="MCMMP006 function scheduled successfully")
     elif control == 'MCSDS002':
-        MCSDS002()   
+        MCSDS002(server)   
         return jsonify(message="MCSDS002 function scheduled successfully")
     else:
         print(f"Unknown control: {control}")

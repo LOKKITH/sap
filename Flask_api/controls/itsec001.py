@@ -6,12 +6,12 @@ from utils.sap_itsm_utils import *
 
 class ITSEC001(object):
 
-    def __init__(self) -> None: 
+    def __init__(self,server) -> None: 
         
         self.utils = Utilities()
         
         creds_fileName = "/home/lokkith/Documents/sap-itsm/Final_SAP_Demo/config/sap_cred.json"
-        self.rfc_creds = self.utils.read_json_file(creds_fileName)
+        self.rfc_creds = self.utils.read_json_file1(creds_fileName,server)
         
         self.profile_names = ["SAP_ALL","SAP_NEW","S_A.SYSTEM","S_A.ADMIN","S_A.CUSTOMIZ","S_A.DEVELOP","S_A.USER","S_USER.ALL","S_ABAP_ALL","S_RZL_ADMIN"]
     
