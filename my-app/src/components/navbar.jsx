@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    fontFamily: 'Arial',
   },
   navbarContainer: {
     display: 'flex',
@@ -62,13 +64,13 @@ const Navbar = () => {
       onClose={handleMenuClose}
       className={classes.dropdownMenu}
     >
-      <MenuItem onClick={handleMenuClose}>SAP Page</MenuItem>
+      
     </Menu>
   );
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ backgroundColor: '#2196f3' }}>
         <Container>
           <Toolbar className={classes.navbarContainer}>
             <IconButton
@@ -80,16 +82,21 @@ const Navbar = () => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              My Website
+              PwC
             </Typography>
+
+            <Button color="inherit" component={Link} to="/">
+              Home
+            </Button>
             <div className={classes.dropdownContainer}>
-              <Button color="inherit" onClick={handleMenuOpen}>
-                Services
+              <Button color="inherit" component={Link} to="/scheduler" onClick={handleMenuOpen}>
+                Scheduler
               </Button>
               {renderMenu}
             </div>
-            <Button color="inherit">Home</Button>
-            <Button color="inherit">Contact Us</Button>
+            <Button color="inherit" component={Link} to="/contactus">
+              Contact Us
+            </Button>
           </Toolbar>
         </Container>
       </AppBar>
